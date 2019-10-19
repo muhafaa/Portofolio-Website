@@ -1,0 +1,63 @@
+html{
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  overflow: hidden;
+  background-color: darkslategray;
+  border-bottom: 2px solid lime;
+}
+
+header a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 2vh 1vh;
+  text-decoration: none;
+  transition: 0.7s
+}
+
+header a:hover {
+  background-color: lime;
+  color: black;
+}
+
+body{
+	font-family:Ubuntu; 
+	color: white; 
+	background-color: teal; 
+	margin: 0;
+}
+
+main{
+  width: 100%;
+}
+
+footer{
+  padding-top: 2vh;
+	background-color: darkslategrey; 
+	text-align:center; 
+	float: left; 
+	width: 100%;
+}
+
+@media only screen and (max-width:620px) {
+  header, main, .right , footer{
+    width:100%;
+  }
+
+  body, footer, input{
+    font-size: 7px;
+  }
+}
+
+@media screen and (min-width: 620px) {
+  body, footer{
+    font-size: 17px;
+  }
+}
+}
