@@ -2,29 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-header {
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  background-color: rgb(72, 102, 102);
-  border-bottom: 2px solid lime;
-}
-
-header a {
-  float: right;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 2vh 1vh;
-  transition: 0.7s;
-  text-decoration: none;
-}
-
-header a:hover {
-  text-decoration: none;
-  background-color: lime;
-  color: black;
-}
-
 body {
   font-family: "Nunito", sans-serif;
   background-color: #e8eafd;
@@ -33,32 +10,42 @@ body {
   background-size: cover;
 }
 
-main {
-  width: 100%;
+.frame {
+  width: 21em;
+  height: 21em;
+  border-radius: 50%;
+  background: #e8eafd;
+  box-shadow: 0.6em 0.6em 1.5em #b3b4c3, -0.6em -0.6em 1.5em #ffffffbe;
 }
 
-footer {
-  background-color: darkslategrey;
+.foto {
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
 }
 
-@media only screen and (max-width: 620px) {
-  header,
-  main,
-  .right,
-  footer {
-    width: 100%;
-  }
-
-  body,
-  footer,
-  input {
-    font-size: 7px;
-  }
+.card-neumorph {
+  padding: 2em;
+  transition: 0.5s;
+  border-radius: 1em;
+  box-shadow: 0 0 1px rgb(179, 180, 195), -0 -0 1px rgb(255, 255, 255);
 }
 
-@media screen and (min-width: 620px) {
-  body,
-  footer {
-    font-size: 17px;
-  }
+.card-neumorph:hover {
+  padding: 2em;
+  border: none;
+  border-radius: 1em;
+  background: #e8eafd;
+  box-shadow: 0.3em 0.3em 1em rgba(179, 180, 195, 0.4),
+    -0.3em -0.3em 1em rgba(255, 255, 255, 0.7);
+}
+
+.link {
+  color: rgb(53, 55, 109);
+  transition: 0.2s;
+}
+
+.link:hover {
+  color: blue;
+  text-decoration: none;
 }
