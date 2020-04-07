@@ -27,7 +27,7 @@ $(document).ready(function () {
         <div class="p-2 col-sm-6">
           <a href="${project.link}" target="blank" class="link m-0">
             <div class="card-neumorph d-flex justify-content-center">
-              ${project.name}
+              <b>${project.name}</b>
             </div>
           </a>
         </div>
@@ -44,12 +44,17 @@ $(document).ready(function () {
       title: "GitHub",
       link: "https://github.com/muhafaa",
       image: 'https://img.icons8.com/color/48/000000/github.png"'
+    },
+    {
+      title: "WhatsApp",
+      image: "https://img.icons8.com/color/50/000000/whatsapp.png",
+      link: "https://we.me/6285838440855"
     }
   ]
 
   contacts.forEach((contact) => {
     $("#contacts").append(`
-          <a href="${contact.link}" target="blank" title="${contact.title}">
+          <a class="contact-link" href="${contact.link}" target="blank" title="${contact.title}">
             <img src="${contact.image}"/>
           </a>
         `)

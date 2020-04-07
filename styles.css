@@ -49,3 +49,11 @@ body {
   color: blue;
   text-decoration: none;
 }
+
+.contact-link {
+  transition: 0.3s;
+}
+
+.contact-link:hover {
+  transform: scale(1.1);
+}
