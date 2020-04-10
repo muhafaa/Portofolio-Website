@@ -48,7 +48,7 @@ $(document).ready(function () {
     {
       title: "WhatsApp",
       image: "https://img.icons8.com/color/50/000000/whatsapp.png",
-      link: "https://we.me/6285838440855"
+      link: "https://wa.me/6285838440855"
     }
   ]
 
