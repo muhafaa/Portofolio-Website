@@ -33,7 +33,7 @@ export const profile = {
   name: 'Muhammad Fajri',
   role: 'Software Engineer transitioning to Agentic AI Engineer',
   quote: { text: 'Adaptability is the key to success', author: 'Unknown' },
-  intro: 'I always looking to grow and giving the best of my effort.',
+  intro: "I'm always looking to grow and to give my best effort.",
 }
 
 export const contacts: ContactLink[] = [
