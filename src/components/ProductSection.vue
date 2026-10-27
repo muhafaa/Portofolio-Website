@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Product } from '../data/profile'
 
-defineProps<{ product: Product; highlighted: boolean }>()
+defineProps<{ product: Product }>()
 </script>
 
 <template>
@@ -10,12 +10,7 @@ defineProps<{ product: Product; highlighted: boolean }>()
     class="scroll-mt-8 grid gap-4 border-t border-rule py-10 md:grid-cols-[15rem_1fr] md:gap-10"
   >
     <header>
-      <h3
-        class="font-display text-2xl font-bold leading-tight transition-colors"
-        :class="highlighted ? 'text-accent' : ''"
-      >
-        {{ product.name }}
-      </h3>
+      <h3 class="font-display text-2xl font-bold leading-tight">{{ product.name }}</h3>
       <p class="mt-1 text-muted">{{ product.period }}</p>
       <a
         v-if="product.url"

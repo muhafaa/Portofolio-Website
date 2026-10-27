@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import HeroQuiz from './components/HeroQuiz.vue'
 import ProductSection from './components/ProductSection.vue'
 import ExperienceTimeline from './components/ExperienceTimeline.vue'
 import {
@@ -13,7 +11,6 @@ import {
   skills,
 } from './data/profile'
 
-const highlighted = ref<string | null>(null)
 const year = new Date().getFullYear()
 </script>
 
@@ -37,14 +34,18 @@ const year = new Date().getFullYear()
     </header>
 
     <main id="top">
-      <section class="grid items-center gap-10 pt-10 pb-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:pt-16">
+      <section class="pt-10 pb-20 lg:pt-16">
         <div class="hero-text">
           <h1 class="text-[clamp(2.75rem,8vw,5.25rem)] leading-[0.95] font-extrabold tracking-[-0.03em]">
             {{ profile.name }}
           </h1>
-          <p class="mt-4 font-display text-2xl font-medium text-muted">
-            {{ profile.role }} in {{ profile.location }}
-          </p>
+          <p class="mt-4 font-display text-2xl font-medium text-muted">{{ profile.role }}</p>
+          <figure class="mt-8 max-w-[52ch] border-l-4 border-accent pl-5">
+            <blockquote class="font-display text-2xl font-medium leading-snug">
+              “{{ profile.quote.text }}”
+            </blockquote>
+            <figcaption class="mt-1 text-muted">{{ profile.quote.author }}</figcaption>
+          </figure>
           <p class="mt-6 max-w-[52ch] text-lg">{{ profile.intro }}</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a
@@ -68,7 +69,6 @@ const year = new Date().getFullYear()
             >
           </div>
         </div>
-        <HeroQuiz @select="highlighted = $event" />
       </section>
 
       <section id="work" aria-labelledby="work-title" class="scroll-mt-8 pb-16">
@@ -82,7 +82,6 @@ const year = new Date().getFullYear()
             v-for="product in products"
             :key="product.id"
             :product="product"
-            :highlighted="highlighted === product.id"
           />
         </div>
       </section>
@@ -95,7 +94,6 @@ const year = new Date().getFullYear()
             v-for="project in personalProjects"
             :key="project.id"
             :product="project"
-            :highlighted="false"
           />
         </div>
       </section>

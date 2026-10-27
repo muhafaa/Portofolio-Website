@@ -31,10 +31,9 @@ export interface SkillGroup {
 
 export const profile = {
   name: 'Muhammad Fajri',
-  role: 'Frontend Engineer',
-  location: 'Jakarta, Indonesia',
-  intro:
-    'I build the screens people use to take tests, fill in surveys, and review scores. For the last four years that has meant assessment and HR products at Sekolahmu, written in Vue, Nuxt, and TypeScript.',
+  role: 'Software Engineer transitioning to Agentic AI Engineer',
+  quote: { text: 'Adaptability is the key to success', author: 'Unknown' },
+  intro: 'I always looking to grow and giving the best of my effort.',
 }
 
 export const contacts: ContactLink[] = [
