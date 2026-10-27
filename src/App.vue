@@ -40,12 +40,11 @@ const year = new Date().getFullYear()
             {{ profile.name }}
           </h1>
           <p class="mt-4 font-display text-2xl font-medium text-muted">{{ profile.role }}</p>
-          <figure class="mt-8 max-w-[52ch] border-l-4 border-accent pl-5">
-            <blockquote class="font-display text-2xl font-medium leading-snug">
-              “{{ profile.quote.text }}”
-            </blockquote>
-            <figcaption class="mt-1 text-muted">{{ profile.quote.author }}</figcaption>
-          </figure>
+          <blockquote
+            class="mt-8 max-w-[52ch] border-l-4 border-accent pl-5 font-display text-2xl font-medium leading-snug"
+          >
+            “{{ profile.quote }}”
+          </blockquote>
           <p class="mt-6 max-w-[52ch] text-lg">{{ profile.intro }}</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a
@@ -137,11 +136,7 @@ const year = new Date().getFullYear()
       <div class="grid gap-10 md:grid-cols-[15rem_1fr]">
         <h2 id="contact-title" class="text-4xl font-bold tracking-tight">Contact</h2>
         <div>
-          <p class="max-w-[52ch] text-lg">
-            Hiring for a frontend role, or want to talk about Vue and assessment products? Email is the
-            fastest way to reach me.
-          </p>
-          <ul class="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2">
+          <ul class="grid gap-x-10 gap-y-4 sm:grid-cols-2">
             <li v-for="link in contacts" :key="link.label">
               <span class="block text-sm text-muted">{{ link.label }}</span>
               <a

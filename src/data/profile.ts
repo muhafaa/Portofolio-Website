@@ -32,7 +32,7 @@ export interface SkillGroup {
 export const profile = {
   name: 'Muhammad Fajri',
   role: 'Software Engineer transitioning to Agentic AI Engineer',
-  quote: { text: 'Adaptability is the key to success', author: 'Unknown' },
+  quote: 'Adaptability is the key to success',
   intro: "I'm always looking to grow and to give my best effort.",
 }
 
