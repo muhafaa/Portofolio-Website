@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { contacts, products, roles } from '../profile'
+import { contacts, personalProjects, products, roles } from '../profile'
 
 describe('profile data', () => {
-  it('gives every product a unique id for its page anchor', () => {
-    const ids = products.map((p) => p.id)
+  it('gives every product and project a unique id for its page anchor', () => {
+    const ids = [...products, ...personalProjects].map((p) => p.id)
     expect(new Set(ids).size).toBe(ids.length)
   })
 

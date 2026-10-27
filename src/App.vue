@@ -3,7 +3,15 @@ import { ref } from 'vue'
 import HeroQuiz from './components/HeroQuiz.vue'
 import ProductSection from './components/ProductSection.vue'
 import ExperienceTimeline from './components/ExperienceTimeline.vue'
-import { contacts, education, products, profile, roles, skills } from './data/profile'
+import {
+  contacts,
+  education,
+  personalProjects,
+  products,
+  profile,
+  roles,
+  skills,
+} from './data/profile'
 
 const highlighted = ref<string | null>(null)
 const year = new Date().getFullYear()
@@ -22,6 +30,7 @@ const year = new Date().getFullYear()
       </a>
       <nav aria-label="Sections" class="hidden gap-6 text-muted sm:flex">
         <a href="#work" class="hover:text-ink">Work</a>
+        <a href="#projects" class="hover:text-ink">Projects</a>
         <a href="#experience" class="hover:text-ink">Experience</a>
         <a href="#contact" class="hover:text-ink">Contact</a>
       </nav>
@@ -74,6 +83,19 @@ const year = new Date().getFullYear()
             :key="product.id"
             :product="product"
             :highlighted="highlighted === product.id"
+          />
+        </div>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title" class="scroll-mt-8 pb-16">
+        <h2 id="projects-title" class="text-4xl font-bold tracking-tight">Personal projects</h2>
+        <p class="mt-3 max-w-[60ch] text-muted">Things I build on my own time.</p>
+        <div class="mt-8">
+          <ProductSection
+            v-for="project in personalProjects"
+            :key="project.id"
+            :product="project"
+            :highlighted="false"
           />
         </div>
       </section>

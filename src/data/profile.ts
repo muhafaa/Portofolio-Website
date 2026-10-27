@@ -11,6 +11,7 @@ export interface Product {
   summary: string
   highlights: string[]
   stack: string[]
+  url?: string
 }
 
 export interface Role {
@@ -89,6 +90,24 @@ export const products: Product[] = [
       'Migrated legacy jQuery screens to Vue components.',
     ],
     stack: ['Vue', 'Laravel', 'Chart.js', 'SCSS', 'jQuery'],
+  },
+]
+
+export const personalProjects: Product[] = [
+  {
+    id: 'wfh-calendar',
+    name: 'WFH Calendar',
+    period: '2026',
+    summary:
+      'A calendar that shows who in each office division works from home on Fridays, and lets anyone download the schedule as an Excel file.',
+    highlights: [
+      'Generates a fair Friday roster for each division, counting past assignments and skipping public holidays.',
+      'Locks past Fridays, so roster changes only reshuffle future slots.',
+      'Builds the Excel export in a web worker, so the page stays responsive while the file is generated.',
+      'Publishes next year’s schedule ahead of time, so the site switches years on 1 January without a new deploy.',
+    ],
+    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Bun', 'ExcelJS', 'Cloudflare Pages'],
+    url: 'https://wfh-calendar.pages.dev',
   },
 ]
 

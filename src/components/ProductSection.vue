@@ -17,6 +17,14 @@ defineProps<{ product: Product; highlighted: boolean }>()
         {{ product.name }}
       </h3>
       <p class="mt-1 text-muted">{{ product.period }}</p>
+      <a
+        v-if="product.url"
+        :href="product.url"
+        target="_blank"
+        rel="noopener"
+        class="mt-3 inline-block font-medium text-accent underline decoration-2 underline-offset-4"
+        >Open the app</a
+      >
     </header>
 
     <div class="max-w-[65ch]">
