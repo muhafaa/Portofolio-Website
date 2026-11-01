@@ -12,6 +12,8 @@ export interface Product {
   highlights: string[]
   stack: string[]
   url?: string
+  /** Text of the link to `url`; defaults to "Open the app". */
+  urlLabel?: string
 }
 
 export interface Role {
@@ -93,6 +95,22 @@ export const products: Product[] = [
 ]
 
 export const personalProjects: Product[] = [
+  {
+    id: 'medina-pos',
+    name: 'Medina POS',
+    period: '2026 to now, in development',
+    summary:
+      'A browser cashier app for one-outlet shops in Indonesia that keeps selling when the internet drops. It has not launched yet, so the link opens an overview of its screens and features.',
+    highlights: [
+      'Built an offline-first till: sales and shifts queue in IndexedDB and sync idempotently, so a sale sent twice is stored once.',
+      'Closing a shift counts the cash drawer against the system and asks for a note on any difference; the owner sees discounts, cancellations, and drawer gaps per cashier.',
+      'Runs every shop on one Go API and PostgreSQL database, separated by row-level security, with money stored as whole integers.',
+      'Built from specs with AI coding agents in frontend, backend, and QA roles that I direct and review.',
+    ],
+    stack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Dexie', 'Go', 'PostgreSQL', 'Playwright'],
+    url: 'https://medina-pos-overview.pages.dev',
+    urlLabel: 'See the overview',
+  },
   {
     id: 'wfh-calendar',
     name: 'WFH Calendar',

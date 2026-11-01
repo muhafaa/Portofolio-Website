@@ -18,7 +18,7 @@ defineProps<{ product: Product }>()
         target="_blank"
         rel="noopener"
         class="mt-3 inline-block font-medium text-accent underline decoration-2 underline-offset-4"
-        >Open the app</a
+        >{{ product.urlLabel ?? 'Open the app' }}</a
       >
     </header>
 

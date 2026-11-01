@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Medina POS, a till that works offline</title>
+    <meta
+      name="description"
+      content="Overview of Medina POS, a browser cashier app for one-outlet shops in Indonesia that keeps selling when the internet drops. In development, built by Muhammad Fajri."
+    />
+    <meta name="robots" content="noindex" />
+    <meta property="og:title" content="Medina POS, a till that works offline" />
+    <meta
+      property="og:description"
+      content="A browser cashier app for one-outlet shops in Indonesia. In development."
+    />
+    <meta property="og:image" content="shots/pos-offline.webp" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#screens">Skip to the screens</a>
+
+    <!-- Hero: a 58 mm receipt beside the till it came from -->
+    <header class="hero" id="top">
+      <div class="receipt hero-card">
+        <div class="barcode" aria-hidden="true" data-ean="8991234500017"></div>
+        <p class="wordmark">
+          <img src="favicon.svg" alt="" width="40" height="40" />
+          <span>Medina POS</span>
+        </p>
+        <h1>A till that works offline</h1>
+        <p class="lede">
+          Medina POS is a browser cashier app for one-outlet shops in Indonesia. I design and build
+          it on my own. It is in development and not launched yet.
+        </p>
+        <a class="button" href="#day">Walk through a cashier’s day</a>
+        <dl class="receipt-lines">
+          <div><dt>Price, planned</dt><dd>Rp99.000 / month</dd></div>
+          <div><dt>Runs on</dt><dd>Phone, tablet, laptop</dd></div>
+          <div><dt>Status</dt><dd>In development</dd></div>
+        </dl>
+        <nav class="hero-links" aria-label="Sections">
+          <a href="#screens">Screens</a>
+          <a href="#features">Features</a>
+          <a href="#everything">How it is built</a>
+        </nav>
+        <span class="tear" aria-hidden="true"></span>
+      </div>
+
+      <figure class="hero-stage">
+        <div class="fade" data-fade>
+          <img
+            src="shots/pos-offline.webp"
+            width="2880"
+            height="1800"
+            alt="The Medina POS till with five items in the cart and an amber badge reading Offline, sales are still saved."
+          />
+          <img
+            src="shots/dashboard.webp"
+            width="2880"
+            height="1800"
+            alt="The owner dashboard for Sunday 25 October: net profit Rp330.714 from 72 sales."
+            loading="lazy"
+          />
+          <img
+            src="shots/laporan-harian.webp"
+            width="2880"
+            height="1800"
+            alt="The daily report with cash and non-cash totals, the day's expenses, and every sale."
+            loading="lazy"
+          />
+        </div>
+        <figcaption>The till, the dashboard and the daily report, with demo data.</figcaption>
+      </figure>
+    </header>
+
+    <main>
+      <!-- Showcase: pick a screen, it lands on the receipt-shaped stage -->
+      <section id="screens" class="screens" aria-labelledby="screens-title">
+        <div class="screens-stage">
+          <figure class="screen is-on" data-screen="till">
+            <img src="shots/pos-offline.webp" width="2880" height="1800" loading="lazy"
+              alt="The till: product grid with barcodes and stock on the left, the cart with a bundle and the total on the right." />
+          </figure>
+          <figure class="screen" data-screen="pay">
+            <img src="shots/pos-bayar.webp" width="2880" height="1800" loading="lazy"
+              alt="The payment dialog: total Rp45.500, five payment methods, quick cash buttons and a keypad." />
+          </figure>
+          <figure class="screen screen-phone" data-screen="phone">
+            <img src="shots/pos-mobile.webp" width="1170" height="2532" loading="lazy"
+              alt="The till on a phone: two columns of products and a cart bar with the Pay button at the bottom." />
+          </figure>
+          <figure class="screen" data-screen="shift">
+            <img src="shots/tutup-shift.webp" width="2880" height="1800" loading="lazy"
+              alt="Closing a shift: the system expects Rp219.000 in the drawer, the cashier counted Rp217.000, and the dialog warns the drawer is Rp2.000 short." />
+          </figure>
+          <figure class="screen" data-screen="dashboard">
+            <img src="shots/dashboard.webp" width="2880" height="1800" loading="lazy"
+              alt="The owner dashboard: net profit, net sales against last week, items low on stock, and the open shift." />
+          </figure>
+          <figure class="screen" data-screen="report">
+            <img src="shots/laporan-harian.webp" width="2880" height="1800" loading="lazy"
+              alt="The daily report: profit, cash and non-cash split, expenses, and a table of the day's 72 sales." />
+          </figure>
+          <figure class="screen" data-screen="activity">
+            <img src="shots/aktivitas-kasir.webp" width="2880" height="1800" loading="lazy"
+              alt="Cashier activity: sales, discounts, cancellations, returns and drawer differences for each user." />
+          </figure>
+          <figure class="screen" data-screen="catalogue">
+            <img src="shots/produk.webp" width="2880" height="1800" loading="lazy"
+              alt="The product catalogue: products with their variants, each with its own SKU, barcode, stock and price." />
+          </figure>
+          <figure class="screen" data-screen="site">
+            <img src="shots/landing.webp" width="2880" height="1800" loading="lazy"
+              alt="The public site: the headline Tetap jualan saat internet putus beside a demo till with an internet switch." />
+          </figure>
+          <span class="tear" aria-hidden="true"></span>
+        </div>
+
+        <div class="screens-index">
+          <h2 id="screens-title">The screens</h2>
+          <ul class="screen-names" role="list">
+            <li><button type="button" aria-pressed="true" data-show="till">The till</button></li>
+            <li><button type="button" aria-pressed="false" data-show="pay">Taking payment</button></li>
+            <li><button type="button" aria-pressed="false" data-show="phone">On a phone</button></li>
+            <li><button type="button" aria-pressed="false" data-show="shift">Closing a shift</button></li>
+            <li><button type="button" aria-pressed="false" data-show="dashboard">Owner dashboard</button></li>
+            <li><button type="button" aria-pressed="false" data-show="report">Daily report</button></li>
+            <li><button type="button" aria-pressed="false" data-show="activity">Cashier activity</button></li>
+            <li><button type="button" aria-pressed="false" data-show="catalogue">Catalogue</button></li>
+            <li><button type="button" aria-pressed="false" data-show="site">Public site</button></li>
+          </ul>
+          <p class="screen-fact" aria-live="polite" data-fact>
+            Scan a barcode or tap a product. A bundle takes stock from each item inside it.
+          </p>
+        </div>
+      </section>
+
+      <!-- Features: close-ups of real parts of the interface -->
+      <section id="features" class="board" aria-labelledby="features-title">
+        <div class="tile tile-head">
+          <h2 id="features-title">What it does</h2>
+        </div>
+
+        <div class="tile t-6x4 tone-accent">
+          <div class="ui ui-big" data-ui>
+            <span class="chip chip-warn"><span class="dot"></span>Offline — transaksi tetap tersimpan</span>
+          </div>
+          <p class="cap"><strong>Sells with no internet</strong>Sales and shifts are saved on the device and sent when it is back online.</p>
+        </div>
+
+        <div class="tile t-3x4 tone-paper">
+          <div class="ui ui-big" data-ui>
+            <span class="alert"><span aria-hidden="true">!</span> Kurang Rp 2.000</span>
+          </div>
+          <p class="cap"><strong>Counts the drawer</strong>Each shift ends with cash counted against the system.</p>
+        </div>
+
+        <div class="tile t-3x4 tone-ink">
+          <div class="ui ui-big" data-ui>
+            <span class="keys"><span>Rp 50.000</span><span>Uang Pas</span></span>
+          </div>
+          <p class="cap"><strong>Fast change</strong>Quick cash buttons and a keypad work out the change.</p>
+        </div>
+
+        <div class="tile t-6x2 tone-soft">
+          <div class="ui ui-big" data-ui>
+            <span class="tag"><span aria-hidden="true">▣</span> Paket bundle</span>
+          </div>
+          <p class="cap"><strong>Bundles and variants</strong>One SKU and barcode per variant; bundles draw stock from each part.</p>
+        </div>
+
+        <div class="tile t-3x2 tone-paper">
+          <div class="ui ui-big" data-ui>
+            <span class="pill-row"><span>Tunai</span><span class="is-on">QRIS</span><span>Debit</span></span>
+          </div>
+          <p class="cap"><strong>Five ways to pay</strong>Cash, QRIS, transfer, debit and pay later.</p>
+        </div>
+
+        <div class="tile t-3x2 tone-accent">
+          <div class="ui ui-big" data-ui>
+            <span class="field"><span class="label">Kode Toko</span><span class="value">tokoawal</span></span>
+          </div>
+          <p class="cap"><strong>One code per shop</strong>Cashiers sign in with the shop code and their own account.</p>
+        </div>
+
+        <div class="tile t-6x2 tone-ink">
+          <div class="ui ui-big" data-ui>
+            <span class="paper-size"><span class="is-on">58 mm</span><span>80 mm</span></span>
+          </div>
+          <p class="cap"><strong>Thermal receipts</strong>Prints to 58 or 80 mm printers; works with USB and Bluetooth scanners.</p>
+        </div>
+
+        <div class="tile t-6x2 tone-soft">
+          <div class="ui ui-big" data-ui>
+            <span class="status-row"><span class="st st-wait">Menunggu</span><span class="st st-ok">Disetujui</span></span>
+          </div>
+          <p class="cap"><strong>Returns need the owner</strong>Cashiers request cancels and returns; the owner approves them.</p>
+        </div>
+      </section>
+
+      <!-- How it works: drag through a cashier's day -->
+      <section id="day" class="day" aria-label="A cashier’s day">
+        <div class="day-words">
+          <h2 class="day-clause" aria-live="polite" data-clause>First, open the shift with a float</h2>
+          <p class="day-note" data-note>
+            The cashier counts the cash already in the drawer. Every sale and every cash in or out is
+            added to it.
+          </p>
+        </div>
+
+        <div class="day-stage">
+          <div class="till" data-ui data-till data-stage="0">
+            <div class="till-bar">
+              <span class="till-shop">Toko Awal</span>
+              <span class="till-net" data-net>Online</span>
+            </div>
+
+            <div class="till-body till-open">
+              <p class="till-title">Buka shift</p>
+              <label class="till-label" for="float">Modal kas di laci</label>
+              <p class="till-input" id="float">Rp 200.000</p>
+              <span class="till-btn">Buka shift</span>
+            </div>
+
+            <div class="till-body till-sales">
+              <p class="till-title">Penjualan shift ini</p>
+              <ul class="till-list" role="list">
+                <li><span>#0001 · 07.12</span><span>Rp 45.500</span><span class="st st-wait" data-sync>Antre</span></li>
+                <li><span>#0002 · 07.20</span><span>Rp 12.000</span><span class="st st-wait" data-sync>Antre</span></li>
+                <li><span>#0003 · 07.31</span><span>Rp 7.500</span><span class="st st-wait" data-sync>Antre</span></li>
+              </ul>
+            </div>
+
+            <div class="till-body till-close">
+              <p class="till-title">Tutup shift</p>
+              <dl class="till-sum">
+                <div><dt>Modal awal</dt><dd>Rp 200.000</dd></div>
+                <div><dt>Penjualan tunai</dt><dd>Rp 65.000</dd></div>
+                <div><dt>Kas masuk</dt><dd>Rp 0</dd></div>
+                <div class="total"><dt>Kas sistem</dt><dd>Rp 265.000</dd></div>
+                <div><dt>Uang fisik di laci</dt><dd>Rp 263.000</dd></div>
+              </dl>
+              <p class="alert alert-sm">Kurang Rp 2.000</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="day-control">
+          <label class="sr-only" for="day-range">Stage of the day</label>
+          <input id="day-range" type="range" min="0" max="3" step="1" value="0" data-range
+            aria-valuetext="Open the shift" />
+          <ol class="day-stops" role="list">
+            <li class="is-on">Open the shift</li>
+            <li>Sell offline</li>
+            <li>Back online</li>
+            <li>Close the shift</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- The full list -->
+      <section id="everything" class="lineup" aria-labelledby="everything-title">
+        <h2 id="everything-title">Everything in it</h2>
+
+        <h3>At the till</h3>
+        <table>
+          <caption class="sr-only">Features at the till</caption>
+          <colgroup><col class="c1" /><col class="c2" /><col class="c3" /><col class="c4" /></colgroup>
+          <thead class="sr-only"><tr><th>Feature</th><th>Detail</th><th>Who</th><th>State</th></tr></thead>
+          <tbody>
+            <tr><td>Barcode and search</td><td>USB or Bluetooth scanner</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Offline sales queue</td><td>IndexedDB, idempotent sync</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Five payment methods</td><td>Cash, QRIS, transfer, debit, later</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Discounts</td><td>Capped, logged per cashier</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Receipts and reprints</td><td>58 or 80 mm thermal</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Shifts and cash moves</td><td>Float, cash in, cash out</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Pay later</td><td>Customer tabs, paid off later</td><td>Cashier</td><td>Built</td></tr>
+            <tr><td>Orders with a deposit</td><td>Down payment, pick up later</td><td>Cashier</td><td>Built</td></tr>
+          </tbody>
+        </table>
+
+        <h3>For the owner</h3>
+        <table>
+          <caption class="sr-only">Features for the owner</caption>
+          <colgroup><col class="c1" /><col class="c2" /><col class="c3" /><col class="c4" /></colgroup>
+          <thead class="sr-only"><tr><th>Feature</th><th>Detail</th><th>Who</th><th>State</th></tr></thead>
+          <tbody>
+            <tr><td>Daily dashboard</td><td>Profit, sales, stock alerts</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Reports by day, month, year</td><td>CSV export at any time</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Cashier activity</td><td>Discounts, cancels, drawer gaps</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Products and variants</td><td>SKU and barcode per variant</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Bundles</td><td>Stock drawn from each part</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Stock in and stock out</td><td>Cost price, supplier, reason</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Excel import</td><td>Products and stock documents</td><td>Owner</td><td>Built</td></tr>
+            <tr><td>Return approvals</td><td>Cashier asks, owner decides</td><td>Owner</td><td>Built</td></tr>
+          </tbody>
+        </table>
+
+        <h3>How it is built</h3>
+        <table>
+          <caption class="sr-only">How Medina POS is built</caption>
+          <colgroup><col class="c1" /><col class="c2" /><col class="c3" /><col class="c4" /></colgroup>
+          <thead class="sr-only"><tr><th>Part</th><th>Tools</th><th>Where</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Frontend</td><td>Next.js 15, TypeScript, Tailwind</td><td>Browser</td><td>PWA</td></tr>
+            <tr><td>Offline data</td><td>Dexie, TanStack Query</td><td>Device</td><td>Queue</td></tr>
+            <tr><td>API</td><td>Go, net/http</td><td>Server</td><td>REST</td></tr>
+            <tr><td>Database</td><td>PostgreSQL, row-level security</td><td>Server</td><td>Per shop</td></tr>
+            <tr><td>Money</td><td>Whole integers, no floats</td><td>Everywhere</td><td>Exact</td></tr>
+            <tr><td>Sign-in</td><td>Ed25519 tokens, lockout</td><td>Server</td><td>Roles</td></tr>
+            <tr><td>Tests</td><td>Go tests, Vitest, Playwright</td><td>Local</td><td>End to end</td></tr>
+            <tr><td>Way of working</td><td>Specs, then AI agents for FE, BE, QA</td><td>Workspace</td><td>Reviewed</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Stats: the visitor sets the number -->
+      <section class="cost" aria-labelledby="cost-title">
+        <div class="cost-top">
+          <h2 id="cost-title">How many sales a day?</h2>
+          <div class="ui cost-control" data-ui>
+            <label for="sales">Penjualan per hari</label>
+            <output for="sales" data-sales-out>60</output>
+            <input id="sales" type="range" min="10" max="300" step="5" value="60" data-sales />
+          </div>
+        </div>
+        <div class="cost-bottom">
+          <p class="cost-figure"><span class="cur">Rp</span><span data-cost>55</span><span class="unit">per sale</span></p>
+          <p class="cost-note">
+            The planned price, Rp99.000 a month, divided by your sales over 30 days. One package: no
+            fee per cashier, device or product.
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA: the first screen, already open -->
+      <section id="launch" class="launch" aria-labelledby="launch-title">
+        <div class="launch-words">
+          <h2 id="launch-title">Not open yet</h2>
+          <p>
+            Medina POS is still being built. Type your shop’s name and the button writes me an email,
+            so I can tell you when it opens.
+          </p>
+        </div>
+
+        <form class="dialog receipt" data-ui data-launch>
+          <p class="dialog-title">Buat toko</p>
+          <label for="shop">Nama toko</label>
+          <input id="shop" name="shop" type="text" value="Toko Awal" autocomplete="organization" />
+          <fieldset>
+            <legend>Jenis toko</legend>
+            <div class="seg">
+              <input type="radio" id="kind-1" name="kind" value="Kelontong" checked />
+              <label for="kind-1">Kelontong</label>
+              <input type="radio" id="kind-2" name="kind" value="Vape" />
+              <label for="kind-2">Vape</label>
+              <input type="radio" id="kind-3" name="kind" value="Lainnya" />
+              <label for="kind-3">Lainnya</label>
+            </div>
+          </fieldset>
+          <button type="submit" class="button">Email me at launch</button>
+          <span class="tear" aria-hidden="true"></span>
+        </form>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p class="mark" aria-label="Medina">
+        <span>M</span><span>E</span><span>D</span><span>I</span><span>N</span><span>A</span>
+      </p>
+      <div class="foot-cols">
+        <ul role="list">
+          <li><a href="https://muhafaa.github.io/Portofolio-Website/#projects">Back to the portfolio</a></li>
+          <li><a href="#screens">Screens</a></li>
+          <li><a href="#everything">How it is built</a></li>
+        </ul>
+        <ul role="list">
+          <li><a href="https://github.com/muhafaa">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/muhammad-fajri-5a0baa157/">LinkedIn</a></li>
+        </ul>
+        <p class="foot-contact">
+          Built by Muhammad Fajri<br />
+          <a href="mailto:muhafa99@gmail.com">muhafa99@gmail.com</a>
+        </p>
+      </div>
+      <div class="foot-last">
+        <p>© 2026 Muhammad Fajri. The screens show demo data from a development build.</p>
+        <a class="button button-sm" href="#top" data-top>Back to top</a>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - "medina-pos-overview/**"
   workflow_dispatch:
 
 permissions:

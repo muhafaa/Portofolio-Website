@@ -1,0 +1,2 @@
+<!-- Medina POS app icon, "M Menyala": source of icon-192.png and icon-512.png. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#2f6bd9"/><polygon points="128,384 128,136 196,136 256,236 316,136 384,136 384,384 320,384 320,252 256,352 192,252 192,384" fill="#ffffff"/><circle cx="398" cy="118" r="40" fill="#f5a524" stroke="#2f6bd9" stroke-width="18"/></svg>
