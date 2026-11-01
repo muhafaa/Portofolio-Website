@@ -1,46 +1,68 @@
 @import 'tailwindcss';
 
 /*
-  Palette: answer-sheet paper and cobalt ink.
+  Palette: green-black and bone, drawn in one line weight.
   Light and dark values live on :root so every utility below follows the scheme.
+  --field is the tinted ground the line drawings sit on.
 */
 :root {
-  --paper: #f5f7fa;
-  --surface: #ffffff;
-  --ink: #1a2233;
-  --muted: #566074;
-  --rule: #d5dbe5;
-  --accent: #3046c5;
-  --accent-soft: #e3e8fb;
-  --on-accent: #ffffff;
+  --bg: #e4e1d7;
+  --surface: #efede6;
+  --field: #d3ddd5;
+  --ink: #161c1a;
+  --muted: #535a55;
+  --accent: #2c6a58;
+  --accent-ink: #f3f1ea;
+  --input: #fbfaf6;
   color-scheme: light;
+
+  --gutter: 12px;
+  --inset: clamp(20px, 4.4vw, 64px);
+
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1.02rem + 0.25vw, 1.25rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.25rem, 1.4rem + 3vw, 4rem);
+  --step-display: clamp(2.75rem, 0.5rem + 5.2vw, 5.25rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-ui: 300ms;
+  --t-reveal: 800ms;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #121826;
-    --surface: #1a2234;
-    --ink: #e6eaf2;
-    --muted: #9aa4b8;
-    --rule: #2c3650;
-    --accent: #8ea2ff;
-    --accent-soft: #232e55;
-    --on-accent: #121826;
+    --bg: #111614;
+    --surface: #161c1a;
+    --field: #1f2a26;
+    --ink: #e3e2da;
+    --muted: #9aa099;
+    --accent: #9fc7b8;
+    --accent-ink: #161c1a;
+    --input: #2a3430;
     color-scheme: dark;
   }
 }
 
 @theme inline {
-  --color-paper: var(--paper);
+  --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-field: var(--field);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-rule: var(--rule);
   --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-on-accent: var(--on-accent);
-  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --color-accent-ink: var(--accent-ink);
+  --color-input: var(--input);
+  --font-serif: 'STIX Two Text', ui-serif, Georgia, serif;
+  --text-small: var(--step-small);
+  --text-body: var(--step-body);
+  --text-lead: var(--step-lead);
+  --text-head: var(--step-head);
+  --text-display: var(--step-display);
 }
 
 @layer base {
@@ -49,29 +71,162 @@
   }
 
   body {
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-family: var(--font-serif);
+    font-size: var(--step-body);
+    line-height: 1.45;
     -webkit-font-smoothing: antialiased;
   }
 
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.026em;
+    line-height: 1.1;
     text-wrap: balance;
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
-    border-radius: 4px;
   }
 
   ::selection {
-    background: var(--accent-soft);
+    background: var(--field);
+  }
+}
+
+/* Links and the one button: feedback under the hand. */
+.link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition:
+    text-underline-offset var(--t-hover) var(--ease-out),
+    color var(--t-hover) ease;
+}
+.link:hover {
+  text-underline-offset: 0.36em;
+  color: var(--accent);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.7em 1.4em;
+  transition:
+    transform var(--t-press) var(--ease-out),
+    opacity var(--t-hover) ease;
+}
+.button:hover {
+  opacity: 0.88;
+}
+.button:active {
+  transform: scale(0.97);
+}
+.arrow {
+  display: inline-block;
+  transition: transform var(--t-ui) var(--ease-out);
+}
+:is(.button, .link, a):hover .arrow,
+:is(.button, .link, a):focus-visible .arrow {
+  transform: translateX(4px);
+}
+
+/* Line drawings: one stroke weight, ink with one accent. */
+.line-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.line-art .a {
+  stroke: var(--accent);
+}
+.line-art .dot {
+  fill: var(--accent);
+  stroke: none;
+}
+/* A lens hides the lines behind it, like a real one held over paper. */
+.line-art .glass {
+  fill: var(--field);
+}
+
+/*
+  Motion. Hidden states apply only under html.js (set by an inline script)
+  and only when the visitor accepts motion, so content never depends on script.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  /* The signature move: each drawing draws itself, line by line. */
+  .js .line-art .s {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s var(--ease-expo) calc(var(--d, 0) * 35ms);
+  }
+  .js .line-art.is-drawn .s,
+  .js .is-in .line-art .s {
+    stroke-dashoffset: 0;
+  }
+  .js .line-art .dot {
+    opacity: 0;
+    transition: opacity 600ms ease calc(var(--d, 0) * 35ms + 500ms);
+  }
+  .js .line-art.is-drawn .dot,
+  .js .is-in .line-art .dot {
+    opacity: 1;
+  }
+
+  .line-art .float {
+    animation: float 5s var(--ease-soft) infinite alternate;
+  }
+
+  /* Section entrances: heading, then text, then picture, once. */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity var(--t-reveal) var(--ease-expo),
+      transform var(--t-reveal) var(--ease-expo);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .js [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* One moving picture: the large screenshot drifts with the scroll. */
+  @supports (animation-timeline: view()) {
+    .drift {
+      animation: drift linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1.05) translateY(-2%);
+  }
+  to {
+    transform: scale(1.05) translateY(2%);
   }
 }
 

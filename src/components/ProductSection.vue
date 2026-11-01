@@ -1,45 +1,32 @@
 <script setup lang="ts">
 import type { Product } from '../data/profile'
+import LineArt, { type Scene } from './LineArt.vue'
 
 defineProps<{ product: Product }>()
 </script>
 
 <template>
-  <article
-    :id="product.id"
-    class="scroll-mt-8 grid gap-4 border-t border-rule py-10 md:grid-cols-[15rem_1fr] md:gap-10"
-  >
-    <header>
-      <h3 class="font-display text-2xl font-bold leading-tight">{{ product.name }}</h3>
-      <p class="mt-1 text-muted">{{ product.period }}</p>
+  <article :id="product.id" :data-scene="product.id" class="scroll-mt-8 pt-24 first:pt-12">
+    <!-- On a phone the stage is gone, so each product carries its own drawing. -->
+    <div data-reveal class="mb-8 bg-field p-10 lg:hidden">
+      <LineArt :scene="product.id as Scene" class="mx-auto max-w-64" />
+    </div>
+    <h3 data-reveal class="text-lead">{{ product.name }}</h3>
+    <p data-reveal style="--i: 1" class="mt-1 text-small text-muted">{{ product.period }}</p>
+    <div data-reveal style="--i: 2" class="mt-5">
+      <p>{{ product.summary }}</p>
+      <ul class="mt-4 flex list-disc flex-col gap-2 pl-5 marker:text-accent">
+        <li v-for="item in product.highlights" :key="item">{{ item }}</li>
+      </ul>
+      <p class="mt-5 text-small text-muted">Built with {{ product.stack.join(', ') }}.</p>
       <a
         v-if="product.url"
         :href="product.url"
         target="_blank"
         rel="noopener"
-        class="mt-3 inline-block font-medium text-accent underline decoration-2 underline-offset-4"
-        >{{ product.urlLabel ?? 'Open the app' }}</a
+        class="link mt-4 inline-block"
+        >{{ product.urlLabel ?? 'Open the app' }} <span class="arrow" aria-hidden="true">→</span></a
       >
-    </header>
-
-    <div class="max-w-[65ch]">
-      <p>{{ product.summary }}</p>
-      <ul class="mt-4 flex flex-col gap-2">
-        <li v-for="item in product.highlights" :key="item" class="flex gap-3">
-          <span aria-hidden="true" class="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-          <span>{{ item }}</span>
-        </li>
-      </ul>
-      <p class="mt-5 text-sm text-muted">
-        <span class="sr-only">Built with: </span>
-        <span
-          v-for="tool in product.stack"
-          :key="tool"
-          class="mr-1.5 mb-1.5 inline-block rounded-md border border-rule px-2 py-0.5"
-        >
-          {{ tool }}
-        </span>
-      </p>
     </div>
   </article>
 </template>

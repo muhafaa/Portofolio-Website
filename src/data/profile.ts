@@ -7,6 +7,8 @@ export interface ContactLink {
 export interface Product {
   id: string
   name: string
+  /** What kind of product it is, shown in the work index. */
+  kind: string
   period: string
   summary: string
   highlights: string[]
@@ -53,6 +55,7 @@ export const products: Product[] = [
   {
     id: 'semesta',
     name: 'Semesta assessment platform',
+    kind: 'Assessment platform',
     period: '2025 to now',
     summary:
       'A Nuxt monorepo of five apps where organisations author test items, run psychometric tests and quizzes, grade participants, and publish reports. I own the frontend of two of the five apps.',
@@ -67,6 +70,7 @@ export const products: Product[] = [
   {
     id: 'vac',
     name: 'Virtual Assessment Center',
+    kind: 'Assessor dashboard',
     period: '2024 to 2025',
     summary:
       'A dashboard where administrators run assessment projects and assessors score candidates. I set up its frontend from an empty repository.',
@@ -81,6 +85,7 @@ export const products: Product[] = [
   {
     id: 'talentics',
     name: 'Talentics dashboard',
+    kind: 'HR and hiring dashboard',
     period: '2022 to 2025',
     summary:
       'An HR dashboard companies use to survey employees and run hiring, from job posts and tests to interviews.',
@@ -98,6 +103,7 @@ export const personalProjects: Product[] = [
   {
     id: 'medina-pos',
     name: 'Medina POS',
+    kind: 'Offline-first cashier app',
     period: '2026 to now, in development',
     summary:
       'A browser cashier app for one-outlet shops in Indonesia that keeps selling when the internet drops. It has not launched yet, so the link opens an overview of its screens and features.',
@@ -114,6 +120,7 @@ export const personalProjects: Product[] = [
   {
     id: 'wfh-calendar',
     name: 'WFH Calendar',
+    kind: 'Roster calendar',
     period: '2026',
     summary:
       'A calendar that shows who in each office division works from home on Fridays, and lets anyone download the schedule as an Excel file.',
