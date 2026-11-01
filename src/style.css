@@ -93,9 +93,23 @@
     outline-offset: 3px;
   }
 
-  ::selection {
-    background: var(--field);
+  /* The browser's own surfaces carry the palette too. */
+  html {
+    scrollbar-color: var(--muted) var(--bg);
+    accent-color: var(--accent);
+    caret-color: var(--accent);
   }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+/* Small text links get a 24px+ hit area without moving the layout. */
+.tap {
+  padding-block: 0.5rem;
+  margin-block: -0.5rem;
 }
 
 /* Links and the one button: feedback under the hand. */
@@ -131,6 +145,8 @@
 }
 .arrow {
   display: inline-block;
+  flex-shrink: 0;
+  vertical-align: 0.02em;
   transition: transform var(--t-ui) var(--ease-out);
 }
 :is(.button, .link, a):hover .arrow,

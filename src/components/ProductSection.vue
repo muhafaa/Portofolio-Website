@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Product } from '../data/profile'
+import ArrowIcon from './ArrowIcon.vue'
 import LineArt, { type Scene } from './LineArt.vue'
 
 defineProps<{ product: Product }>()
@@ -25,7 +26,7 @@ defineProps<{ product: Product }>()
         target="_blank"
         rel="noopener"
         class="link mt-4 inline-block"
-        >{{ product.urlLabel ?? 'Open the app' }} <span class="arrow" aria-hidden="true">→</span></a
+        >{{ product.urlLabel ?? 'Open the app' }} <ArrowIcon /></a
       >
     </div>
   </article>

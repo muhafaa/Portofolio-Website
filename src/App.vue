@@ -2,6 +2,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import ProductSection from './components/ProductSection.vue'
 import ExperienceTimeline from './components/ExperienceTimeline.vue'
+import ArrowIcon from './components/ArrowIcon.vue'
 import LineArt from './components/LineArt.vue'
 import StagePanel from './components/StagePanel.vue'
 import posOffline from './assets/medina/pos-offline.webp'
@@ -44,7 +45,7 @@ const time = ref(clock.format(new Date()))
 
 const message = ref('')
 function writeEmail() {
-  const body = encodeURIComponent(message.value)
+  const body = encodeURIComponent(message.value.trim())
   window.location.href = `${email.href}?subject=${encodeURIComponent('Hello from your website')}&body=${body}`
 }
 
@@ -88,12 +89,12 @@ onUnmounted(() => {
     <div class="grid gap-[var(--gutter)] lg:grid-cols-2">
       <div class="bg-surface px-[var(--inset)] pb-32">
         <header class="flex h-20 items-center justify-between gap-6 text-small">
-          <a href="#top" class="link no-underline">{{ profile.name }}</a>
+          <a href="#top" class="link tap no-underline">{{ profile.name }}</a>
           <nav aria-label="Sections" class="flex gap-5 sm:gap-7">
-            <a href="#work" class="link no-underline hover:underline">Work</a>
-            <a href="#projects" class="link no-underline hover:underline">Projects</a>
-            <a href="#experience" class="link hidden no-underline hover:underline sm:inline">Experience</a>
-            <a href="#contact" class="link no-underline hover:underline">Contact</a>
+            <a href="#work" class="link tap no-underline hover:underline">Work</a>
+            <a href="#projects" class="link tap no-underline hover:underline">Projects</a>
+            <a href="#experience" class="link tap hidden no-underline hover:underline sm:inline">Experience</a>
+            <a href="#contact" class="link tap no-underline hover:underline">Contact</a>
           </nav>
         </header>
 
@@ -109,7 +110,7 @@ onUnmounted(() => {
             </blockquote>
             <p class="hero-line mt-3 max-w-[46ch]" style="--i: 3">{{ profile.intro }}</p>
             <div class="hero-line mt-10 flex flex-wrap items-center gap-x-7 gap-y-4" style="--i: 4">
-              <a :href="email.href" class="button">Email me <span class="arrow" aria-hidden="true">→</span></a>
+              <a :href="email.href" class="button">Email me <ArrowIcon /></a>
               <a :href="linkedin.href" target="_blank" rel="noopener" class="link">LinkedIn</a>
               <a :href="github.href" target="_blank" rel="noopener" class="link">GitHub</a>
             </div>
@@ -125,6 +126,7 @@ onUnmounted(() => {
               <li v-for="product in products" :key="product.id">
                 <a
                   :href="`#${product.id}`"
+                  :aria-label="`${product.name}, ${product.kind}, ${product.period}`"
                   class="grid grid-cols-[1fr_auto] items-baseline gap-x-6 py-3 sm:grid-cols-[1.2fr_1fr_auto]"
                   @mouseenter="hoverScene = product.id"
                   @focus="hoverScene = product.id"
@@ -133,9 +135,8 @@ onUnmounted(() => {
                   <span>{{ product.name }}</span>
                   <span
                     class="col-span-2 row-start-2 text-small text-muted sm:col-span-1 sm:col-start-2 sm:row-start-1"
-                    >{{
-                    product.kind
-                  }}</span>
+                    >{{ product.kind }}</span
+                  >
                   <span class="text-small text-muted tabular-nums">{{ product.period }}</span>
                 </a>
               </li>
@@ -177,7 +178,7 @@ onUnmounted(() => {
             </ul>
             <p class="mt-5 text-small text-muted">Built with {{ medina.stack.join(', ') }}.</p>
             <a :href="medina.url" target="_blank" rel="noopener" class="link mt-4 inline-block"
-              >{{ medina.urlLabel }} <span class="arrow" aria-hidden="true">→</span></a
+              >{{ medina.urlLabel }} <ArrowIcon /></a
             >
           </div>
         </div>
@@ -224,7 +225,7 @@ onUnmounted(() => {
             </ul>
             <p class="mt-5 text-small text-muted">Built with {{ wfh.stack.join(', ') }}.</p>
             <a :href="wfh.url" target="_blank" rel="noopener" class="link mt-4 inline-block"
-              >Open the app <span class="arrow" aria-hidden="true">→</span></a
+              >Open the app <ArrowIcon /></a
             >
           </div>
         </div>
@@ -298,7 +299,7 @@ onUnmounted(() => {
               aria-label="Write the email"
               class="button absolute top-2 right-2 h-12 w-12 justify-center p-0"
             >
-              <span class="arrow" aria-hidden="true">→</span>
+              <ArrowIcon />
             </button>
           </form>
           <p id="message-note" data-reveal style="--i: 3" class="mt-4 text-small text-muted">
@@ -311,7 +312,7 @@ onUnmounted(() => {
                 :href="link.href"
                 :target="link.href.startsWith('http') ? '_blank' : undefined"
                 rel="noopener"
-                class="link break-all"
+                class="link tap [overflow-wrap:anywhere]"
                 >{{ link.text }}</a
               >
             </li>
@@ -325,10 +326,10 @@ onUnmounted(() => {
     >
       <p class="text-muted">{{ profile.name }}, software engineer</p>
       <p class="flex flex-wrap gap-x-6 gap-y-1">
-        <a :href="email.href" class="link">Email</a>
-        <a :href="linkedin.href" target="_blank" rel="noopener" class="link">LinkedIn</a>
-        <a :href="github.href" target="_blank" rel="noopener" class="link">GitHub</a>
-        <a href="https://github.com/muhafaa/Portofolio-Website" target="_blank" rel="noopener" class="link"
+        <a :href="email.href" class="link tap">Email</a>
+        <a :href="linkedin.href" target="_blank" rel="noopener" class="link tap">LinkedIn</a>
+        <a :href="github.href" target="_blank" rel="noopener" class="link tap">GitHub</a>
+        <a href="https://github.com/muhafaa/Portofolio-Website" target="_blank" rel="noopener" class="link tap"
           >Source</a
         >
       </p>
